@@ -3,7 +3,11 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "playwright test",
+    "test:chromium": "playwright test --project chromium --reporter=@replayio/playwright/reporter,line",
+    "test:replay-chromium": "playwright test --project replay-chromium --reporter=@replayio/playwright/reporter,line",
+    "test:debug": "playwright test --project chromium --workers 1 --headed"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.0",
