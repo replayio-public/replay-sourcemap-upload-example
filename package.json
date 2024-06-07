@@ -3,7 +3,11 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "playwright test",
+    "test:chromium": "playwright test --project chromium --reporter=@replayio/playwright/reporter,line",
+    "test:replay-chromium": "playwright test --project replay-chromium --reporter=@replayio/playwright/reporter,line",
+    "test:debug": "playwright test --project chromium --workers 1 --headed"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.0",
@@ -13,6 +17,8 @@
     "react-redux": "^9.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@replayio/playwright": "^3.0.2",
     "@types/node": "20.2.5",
     "@types/react": "18.2.37",
     "@types/react-dom": "^18.2.18",

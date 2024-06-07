@@ -1,0 +1,19 @@
+name: End-to-end tests
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: yarn
+      - name: Install Replay Chromium
+        run: npx replayio install
+      - name: Run Playwright tests
+        run: npx playwright test --project replay-chromium
+        env:
+          REPLAY_API_KEY: ${{ secrets.REPLAY_API_KEY }}
