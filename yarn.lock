@@ -141,7 +141,14 @@
     text-table "^0.2.0"
     ws "^7.5.0"
 
-"@replayio/sourcemap-upload@^2.0.3":
+"@replayio/sourcemap-upload-webpack-plugin@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@replayio/sourcemap-upload-webpack-plugin/-/sourcemap-upload-webpack-plugin-2.0.0.tgz#38e74d4ecf47f97398c2bcbd29cd450d0de60eb6"
+  integrity sha512-Gkh7aZvf6MqDw8JiqcUZ1/uspRldBDP6n5PiSQ/KBnF1+sAnQmtHczuvFhEHyyHKdBLl30uTkVldxiKrifbnww==
+  dependencies:
+    "@replayio/sourcemap-upload" "^2.0.0"
+
+"@replayio/sourcemap-upload@^2.0.0", "@replayio/sourcemap-upload@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@replayio/sourcemap-upload/-/sourcemap-upload-2.0.3.tgz#98a4cc626c51209c04b75277edd48a98b14c62d8"
   integrity sha512-ZFKW5ZhSosDjWBXpp3n9+DFwOos8QUv2BqQkKOBYFri6ogmLB6ayctbHkL00wGztfGm1BBh0JQ3yJ4pvDplJGw==
