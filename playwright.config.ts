@@ -1,8 +1,6 @@
 import { devices, PlaywrightTestConfig, defineConfig } from '@playwright/test';
-import { devices as replayDevices } from "@replayio/playwright";
+import { devices as replayDevices, replayReporter } from "@replayio/playwright";
 
-import dotenv from 'dotenv';
-dotenv.config({ path: '.env' });
 
 
 /**
@@ -26,20 +24,14 @@ const config: PlaywrightTestConfig = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['line'],
-    [
-      "@replayio/playwright/reporter",
-      {
-        apiKey: process.env.PLAYWRIGHT_REPLAY_API_KEY,
-        upload: true,
-      },
-    ],
+    replayReporter({
+      apiKey: process.env.REPLAY_API_KEY,
+      upload: true,
+    }),
+    ["line"],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
-
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
@@ -48,7 +40,7 @@ const config: PlaywrightTestConfig = defineConfig({
   projects: [
     {
       name: "replay-chromium",
-      use: { ...(replayDevices["Replay Chromium"] as any) },
+      use: { ...(replayDevices["Replay Chromium"]) },
     },
     {
       name: 'chromium',
