@@ -20,7 +20,7 @@ export default function RootLayout({ children }: Props) {
             <main className={styles.main}>
             
             <h1>Replay Sourcemap Configuration Example</h1>
-            <h2>See the <a href="https://docs.replay.io/reference/replay-cli/source-maps" style={{color: "default"}}>Replay Sourcemap Upload docs</a></h2>
+            <h2>See the <a href="https://docs.replay.io/reference/replay-cli/source-maps" className={styles.link}>Replay Sourcemap Upload docs</a></h2>
               {children}
               </main>
 
