@@ -1,4 +1,3 @@
-import { DeleteSourceMapsPlugin } from "webpack-delete-sourcemaps-plugin";
 import ReplaySourceMapUploadWebpackPlugin from "@replayio/sourcemap-upload-webpack-plugin";
 
 /** @type {import('next').NextConfig} */
@@ -13,25 +12,24 @@ const nextConfig = {
     webpackConfig.devtool = "hidden-source-map";
 
     if (!dev && !isServer) {
-      console.log("API Key: ", process.env.REPLAY_API_KEY.slice(4));
       /** @type {import('@replayio/sourcemap-upload-webpack-plugin').PluginOptions} */
       const uploadOptions = {
-        // If you've configured a custom build directory, this should
-        // point to that directory.
+        // If you've configured a custom build directory, this should point to that directory.
         filepaths: [".next/"],
-        // Potentially the 'buildId' argument here could be used.
+        // You can use `buildId` here to differentiate sourcemaps between different builds.
         group: buildId,
-        log: (level, message) => {
-          console.log(`[${level}] Upload sourcemaps: `, message)
-        },
-        key: process.env.REPLAY_API_KEY,
+        // log: (level, message) => {
+        //   console.log(`[${level}] Upload sourcemaps: `, message)
+        // },
+        // dryRun: true,
+        // deleteAfterUpload: true,
+        // key: process.env.REPLAY_API_KEY,
       };
       config.plugins.push(
         new ReplaySourceMapUploadWebpackPlugin(uploadOptions),
       )
     }
 
-    webpackConfig.plugins.push(new DeleteSourceMapsPlugin({ isServer, keepServerSourcemaps: true }))
     return config
   }
 };
